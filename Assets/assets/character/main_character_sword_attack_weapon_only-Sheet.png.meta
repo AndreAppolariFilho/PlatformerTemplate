@@ -1,0 +1,304 @@
+fileFormatVersion: 2
+guid: 9c21ecee98fa4c7449c7ec09b8454fd8
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -9028587101973478078
+    second: main_character_sword_attack_weapon_only-Sheet_0
+  - first:
+      213: -7968395785019730097
+    second: main_character_sword_attack_weapon_only-Sheet_1
+  - first:
+      213: 6445823112134583713
+    second: main_character_sword_attack_weapon_only-Sheet_2
+  - first:
+      213: 8952582927267245939
+    second: main_character_sword_attack_weapon_only-Sheet_3
+  - first:
+      213: -4803569243361031679
+    second: main_character_sword_attack_weapon_only-Sheet_4
+  - first:
+      213: 8235623114574188376
+    second: main_character_sword_attack_weapon_only-Sheet_5
+  - first:
+      213: 8121822828542518225
+    second: main_character_sword_attack_weapon_only-Sheet_6
+  - first:
+      213: -6627760353329516918
+    second: main_character_sword_attack_weapon_only-Sheet_0
+  - first:
+      213: -1478204193080428449
+    second: main_character_sword_attack_weapon_only-Sheet_1
+  - first:
+      213: 1284762793733583911
+    second: main_character_sword_attack_weapon_only-Sheet_2
+  - first:
+      213: 1247093514537306380
+    second: main_character_sword_attack_weapon_only-Sheet_3
+  - first:
+      213: 118740881541458990
+    second: main_character_sword_attack_weapon_only-Sheet_4
+  - first:
+      213: -5475858663056049935
+    second: main_character_sword_attack_weapon_only-Sheet_5
+  - first:
+      213: -4737479741263494854
+    second: main_character_sword_attack_weapon_only-Sheet_6
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 21
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: main_character_sword_attack_weapon_only-Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 320
+        width: 30
+        height: 26
+      alignment: 9
+      pivot: {x: 1.002483, y: 0.0011589413}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8e6063f2177504a0800000000000000
+      internalID: -6627760353329516918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: main_character_sword_attack_weapon_only-Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 107
+        y: 320
+        width: 88
+        height: 36
+      alignment: 9
+      pivot: {x: 0.97273564, y: -0.00007035997}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f58b2f54e1d5c7be0800000000000000
+      internalID: -1478204193080428449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: main_character_sword_attack_weapon_only-Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 314
+        y: 313
+        width: 41
+        height: 41
+      alignment: 9
+      pivot: {x: 0.19660391, y: 0.17771353}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 724f02534f464d110800000000000000
+      internalID: 1284762793733583911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: main_character_sword_attack_weapon_only-Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 170
+        width: 53
+        height: 56
+      alignment: 9
+      pivot: {x: 0.36212143, y: 0.35563904}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0980bfa1f09e4110800000000000000
+      internalID: 1247093514537306380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: main_character_sword_attack_weapon_only-Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 170
+        width: 31
+        height: 54
+      alignment: 9
+      pivot: {x: -0.07747429, y: 0.3671262}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2c6890e33ad5a100800000000000000
+      internalID: 118740881541458990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: main_character_sword_attack_weapon_only-Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 170
+        width: 31
+        height: 19
+      alignment: 9
+      pivot: {x: -0.09509277, y: 1.0570743}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f87c4cee87d104b0800000000000000
+      internalID: -5475858663056049935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: main_character_sword_attack_weapon_only-Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 44
+        width: 21
+        height: 11
+      alignment: 9
+      pivot: {x: -0.09060851, y: 1.491522}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a31416b8647114eb0800000000000000
+      internalID: -4737479741263494854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
