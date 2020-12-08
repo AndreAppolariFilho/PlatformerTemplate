@@ -23,10 +23,11 @@ public class CursorTerminalSelecting : CursorTerminalState
     public override void LogicUpdate()
     {
         int inputX = player.InputHandler.NormInputX;
+        int inputY = player.InputHandler.NormInputY;
         bool cancel = player.InputHandler.CancelInput;
         bool confirm = player.InputHandler.JumpInput;
         bool showInfo = player.InputHandler.InteractInput;
-        player.SetPositionInSelectPosition(inputX);
+        player.SetPositionInSelectPosition(inputX, inputY);
         if(cancel)
         {
             player.InputHandler.UseCancelInput();

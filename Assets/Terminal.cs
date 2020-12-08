@@ -15,6 +15,7 @@ public class Terminal : MonoBehaviour
     public GameObject selectingInTerminalHud;
     public GameObject deletingInTerminalHud;
     public Modal tutorialPanel;
+    public GameObject cursor;
     public struct Connection
     {
         public Button up;
