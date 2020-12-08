@@ -15,10 +15,40 @@ public class Terminal : MonoBehaviour
     public GameObject selectingInTerminalHud;
     public GameObject deletingInTerminalHud;
     public Modal tutorialPanel;
+    public struct Connection
+    {
+        public Button up;
+        public Button down;
+        public Button left;
+        public Button right;
+    }
+    public Dictionary<Button, Connection> connections;
     public void AllocTerminalSize(int size)
     {
         buttonsInTerminal = new Button[size];
         processerInput.buttonsInTerminal = new Button[size];
+    }
+    public void SetConnection(Button button1, Button button2, string type)
+    {
+        Connection c = connections[button1];
+        if (type == "up")
+        {   
+            c.up = button2;
+        }
+        if(type == "down")
+        {
+            c.down = button2;
+        }
+        if(type == "left")
+        {
+            c.left = button2;
+        }
+        if(type == "right")
+        {
+            c.right = button2;
+        }
+        connections[button1] = c;
+
     }
     private void Start()
     {

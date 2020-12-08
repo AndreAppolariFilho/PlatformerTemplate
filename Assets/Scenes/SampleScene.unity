@@ -59679,6 +59679,7 @@ MonoBehaviour:
   cpu: 0
   finished: 0
   allowedButtons: []
+  connections: []
   word: '[*RL]'
   inLoop: 0
   m_firstWaypoint: {fileID: 649056649}
@@ -66280,6 +66281,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b7e588555dfe6d845bbabce38c70a2ed, type: 2}
   - {fileID: 11400000, guid: 80b30b276bf2ce746bb3f4a9e6e0be35, type: 2}
   - {fileID: 11400000, guid: 107d45afb3df9ba448fb0b99b9011687, type: 2}
+  connections: []
   word: 
   inLoop: 0
   m_firstWaypoint: {fileID: 561404079}
@@ -67282,7 +67284,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.34877, y: -4.9154587, z: -14.670703}
+  m_LocalPosition: {x: 9.471914, y: -4.91046, z: -14.670703}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -71297,6 +71299,7 @@ MonoBehaviour:
   cpu: 0
   finished: 0
   allowedButtons: []
+  connections: []
   word: UDRL[5[5UD]]
   inLoop: 0
   m_firstWaypoint: {fileID: 0}
@@ -72957,10 +72960,36 @@ MonoBehaviour:
   cpu: 0
   finished: 0
   allowedButtons:
-  - {fileID: 11400000, guid: 107d45afb3df9ba448fb0b99b9011687, type: 2}
-  - {fileID: 11400000, guid: 80b30b276bf2ce746bb3f4a9e6e0be35, type: 2}
   - {fileID: 11400000, guid: b7e588555dfe6d845bbabce38c70a2ed, type: 2}
+  - {fileID: 11400000, guid: 80b30b276bf2ce746bb3f4a9e6e0be35, type: 2}
   - {fileID: 11400000, guid: 304d1362de0bb984fa916265e516430d, type: 2}
+  - {fileID: 11400000, guid: 107d45afb3df9ba448fb0b99b9011687, type: 2}
+  connections:
+  - button: {fileID: 11400000, guid: b7e588555dfe6d845bbabce38c70a2ed, type: 2}
+    up: {fileID: 0}
+    down: {fileID: 11400000, guid: 80b30b276bf2ce746bb3f4a9e6e0be35, type: 2}
+    left: {fileID: 0}
+    right: {fileID: 11400000, guid: b789e7578a291c144be41fdce7df0927, type: 2}
+  - button: {fileID: 11400000, guid: 80b30b276bf2ce746bb3f4a9e6e0be35, type: 2}
+    up: {fileID: 11400000, guid: b7e588555dfe6d845bbabce38c70a2ed, type: 2}
+    down: {fileID: 11400000, guid: 304d1362de0bb984fa916265e516430d, type: 2}
+    left: {fileID: 0}
+    right: {fileID: 11400000, guid: b789e7578a291c144be41fdce7df0927, type: 2}
+  - button: {fileID: 11400000, guid: 304d1362de0bb984fa916265e516430d, type: 2}
+    up: {fileID: 11400000, guid: 80b30b276bf2ce746bb3f4a9e6e0be35, type: 2}
+    down: {fileID: 11400000, guid: 107d45afb3df9ba448fb0b99b9011687, type: 2}
+    left: {fileID: 0}
+    right: {fileID: 11400000, guid: b789e7578a291c144be41fdce7df0927, type: 2}
+  - button: {fileID: 11400000, guid: 107d45afb3df9ba448fb0b99b9011687, type: 2}
+    up: {fileID: 11400000, guid: 304d1362de0bb984fa916265e516430d, type: 2}
+    down: {fileID: 0}
+    left: {fileID: 0}
+    right: {fileID: 11400000, guid: b789e7578a291c144be41fdce7df0927, type: 2}
+  - button: {fileID: 11400000, guid: b789e7578a291c144be41fdce7df0927, type: 2}
+    up: {fileID: 0}
+    down: {fileID: 0}
+    left: {fileID: 0}
+    right: {fileID: 11400000, guid: 107d45afb3df9ba448fb0b99b9011687, type: 2}
   word: 
   inLoop: 0
   m_firstWaypoint: {fileID: 1231937729}

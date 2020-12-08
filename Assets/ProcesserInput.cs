@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,7 +12,18 @@ public class ProcesserInput : MonoBehaviour
     int actualForLoop = 0;
     int totalForLoop = 0;
     public bool finished = false;
-    public Button[] allowedButtons; 
+    public Button[] allowedButtons;
+    [Serializable]
+    public class Connection
+    {
+        public Button button;
+        public Button up;
+        public Button down;
+        public Button left;
+        public Button right;
+    };
+    
+    public Connection[] connections;
     public string word = "U}{{}}}{}}{DRL[5[5UD]]";
     public bool inLoop = false;
     public Dictionary<int, List<int>> for_loop_state;
