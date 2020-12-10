@@ -15,3 +15,4 @@ MonoBehaviour:
   buttonImage: {fileID: 4985845169117699134, guid: 7e78db5f5a80c254b95139947dd3adb2, type: 3}
   buttonValue: NA
   description: This node will delete any node that you select.
+  funtionName: Remove

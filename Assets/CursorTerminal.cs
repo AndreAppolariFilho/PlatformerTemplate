@@ -20,6 +20,7 @@ public class CursorTerminal : MonoBehaviour
     public GameObject bottomRight;
     public GameObject bottomLeft;
     public GameObject middlePoint;
+    public GameObject arrow;
     public Terminal terminal;
     public PlayerInputHandler InputHandler;
     public Button actualButtonInSelectPosition;
@@ -41,11 +42,13 @@ public class CursorTerminal : MonoBehaviour
     }
     void Start()
     {
-        
+        Debug.LogError(this.gameObject.name);
+        Debug.LogError(terminal.gameObject.name);
+        actualButtonInSelectPosition = terminal.buttonsToChoice[0];
         this.SetPositionInSelectPosition(0, 0);
         
         //SetSize(terminal.positionsToChoice[0].GetComponent<Image>().sprite.rect.width * 2, terminal.positionsToChoice[0].GetComponent<Image>().sprite.rect.height * 2);
-        actualButtonInSelectPosition = terminal.positionsToChoice[0];
+        
     }
 
     public void SetSize(float w, float h)
@@ -87,6 +90,7 @@ public class CursorTerminal : MonoBehaviour
     }
     public void SetPositionInSelectPosition(int input_x, int input_y)
     {
+        Debug.LogError("Input Y "+input_y);
         if (currentTimeToMove <= 0)
         {
             
@@ -114,9 +118,17 @@ public class CursorTerminal : MonoBehaviour
         }*/
             if(input_x > 0)
             {
+                Debug.LogError(actualButtonInSelectPosition.name);
+                Debug.LogError(terminal.connections.ContainsKey(actualButtonInSelectPosition));
+                Debug.LogError(terminal.connections.Count);
+                foreach(KeyValuePair<Button, Terminal.Connection> c in terminal.connections)
+                {
+                    Debug.LogError(c.Key);
+                }
                 if(terminal.connections[actualButtonInSelectPosition].right)
                 {
                     actualButtonInSelectPosition = terminal.connections[actualButtonInSelectPosition].right;
+                    currentTimeToMove = timeToMove;
                 }
             }
             if(input_x < 0)
@@ -124,6 +136,7 @@ public class CursorTerminal : MonoBehaviour
                 if(terminal.connections[actualButtonInSelectPosition].left)
                 {
                     actualButtonInSelectPosition = terminal.connections[actualButtonInSelectPosition].left;
+                    currentTimeToMove = timeToMove;
                 }
             }
             if(input_y > 0)
@@ -131,6 +144,7 @@ public class CursorTerminal : MonoBehaviour
                 if(terminal.connections[actualButtonInSelectPosition].up)
                 {
                     actualButtonInSelectPosition = terminal.connections[actualButtonInSelectPosition].up;
+                    currentTimeToMove = timeToMove;
                 }
             }
             if(input_y < 0)
@@ -138,11 +152,26 @@ public class CursorTerminal : MonoBehaviour
                 if(terminal.connections[actualButtonInSelectPosition].down)
                 {
                     actualButtonInSelectPosition = terminal.connections[actualButtonInSelectPosition].down;
+                    currentTimeToMove = timeToMove;
                 }
             }
         }
-        this.transform.parent = terminal.positionsToChoice[cursorInSelectPosition].transform;
+         Debug.LogError(actualButtonInSelectPosition.name);
+         if(terminal.positionsToChoice.ContainsKey(actualButtonInSelectPosition))
+         {
+            for(int i = 0; i < terminal.positionsToChoice[actualButtonInSelectPosition].transform.childCount; i++)
+            {
+                Transform child = terminal.positionsToChoice[actualButtonInSelectPosition].transform.GetChild(i);
+                if(child.tag == "CursorPosition")
+                {
+                    this.transform.parent = child;
+                    break;
+                }
+                
+            }
+        }
         this.transform.localPosition = Vector3.zero;
+        arrow.transform.localPosition = Vector3.zero;
         middlePoint.transform.localPosition = Vector3.zero;
     }
     

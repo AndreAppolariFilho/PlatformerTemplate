@@ -7,4 +7,5 @@ public class Button : ScriptableObject
     public Sprite buttonImage;
     public string buttonValue;
     public string description;
+    public string funtionName;
 }

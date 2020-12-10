@@ -15,3 +15,4 @@ MonoBehaviour:
   buttonImage: {fileID: 5851878915321720725, guid: 7e78db5f5a80c254b95139947dd3adb2, type: 3}
   buttonValue: R
   description: This node will cause the platform to move to the right
+  funtionName: Right()

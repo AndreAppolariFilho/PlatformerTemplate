@@ -15,3 +15,4 @@ MonoBehaviour:
   buttonImage: {fileID: -351641957730465402, guid: 7e78db5f5a80c254b95139947dd3adb2, type: 3}
   buttonValue: L
   description: This node will cause the platform to move to the left.
+  funtionName: Left()

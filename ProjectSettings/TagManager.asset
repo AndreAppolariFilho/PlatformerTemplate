@@ -11,6 +11,7 @@ TagManager:
   - LadderPlatform
   - MovingPlatform
   - DeleteButton
+  - CursorPosition
   layers:
   - Default
   - TransparentFX

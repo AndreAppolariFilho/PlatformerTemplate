@@ -60390,7 +60390,7 @@ GameObject:
   - component: {fileID: 313711451}
   m_Layer: 5
   m_Name: CursorPosition (3)
-  m_TagString: Untagged
+  m_TagString: CursorPosition
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -60728,7 +60728,7 @@ RectTransform:
   m_LocalScale: {x: 0.7085037, y: 0.87831044, z: 0.7970668}
   m_Children: []
   m_Father: {fileID: 1270298099}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -60923,7 +60923,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &365972450
 RectTransform:
   m_ObjectHideFlags: 0
@@ -66438,13 +66438,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 461537257}
+  - component: {fileID: 461537258}
   m_Layer: 5
   m_Name: Terminal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &461537257
 RectTransform:
   m_ObjectHideFlags: 0
@@ -66468,6 +66469,39 @@ RectTransform:
   m_AnchoredPosition: {x: -38.299988, y: -35.899994}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &461537258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 461537256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fddec454cc2edc647a0ad578fd5121f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonsInTerminal: []
+  buttonsToChoice:
+  - {fileID: 11400000, guid: b7e588555dfe6d845bbabce38c70a2ed, type: 2}
+  - {fileID: 11400000, guid: 80b30b276bf2ce746bb3f4a9e6e0be35, type: 2}
+  - {fileID: 11400000, guid: 304d1362de0bb984fa916265e516430d, type: 2}
+  - {fileID: 11400000, guid: 107d45afb3df9ba448fb0b99b9011687, type: 2}
+  - {fileID: 11400000, guid: b789e7578a291c144be41fdce7df0927, type: 2}
+  deleteButton: {fileID: 11400000, guid: b789e7578a291c144be41fdce7df0927, type: 2}
+  internalPositionsToChoice:
+  - {fileID: 1566821330}
+  - {fileID: 1341705128}
+  - {fileID: 1967336110}
+  - {fileID: 1128591051}
+  - {fileID: 676598693}
+  postionsInTerminal: []
+  processerInput: {fileID: 0}
+  selectingObjectButtonsHud: {fileID: 0}
+  selectingInTerminalHud: {fileID: 0}
+  deletingInTerminalHud: {fileID: 0}
+  tutorialPanel: {fileID: 0}
+  cursor: {fileID: 0}
 --- !u!1 &473269268
 GameObject:
   m_ObjectHideFlags: 0
@@ -66921,15 +66955,15 @@ RectTransform:
   m_GameObject: {fileID: 500367435}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 5.000017, y: 5, z: 1}
   m_Children: []
-  m_Father: {fileID: 769584719}
-  m_RootOrder: 0
+  m_Father: {fileID: 1270298099}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 128.2, y: 141}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &500367437
 MonoBehaviour:
@@ -67014,7 +67048,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 1
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: -1.8363888, z: 178.33218, w: 16.317327}
+  m_margin: {x: 37.40679, y: 16.260063, z: 36.003883, w: 37.241398}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -67156,7 +67190,7 @@ RectTransform:
   - {fileID: 863581994}
   - {fileID: 41985610}
   m_Father: {fileID: 594172504}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -67284,7 +67318,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.471914, y: -4.91046, z: -14.670703}
+  m_LocalPosition: {x: 11.330273, y: -4.8349795, z: -14.670703}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -67432,7 +67466,7 @@ MonoBehaviour:
   cameraPlayer: {fileID: 489574035}
   cameraCursor: {fileID: 601467507}
   cursorHUD: {fileID: 1122048173}
-  terminalHUD: {fileID: 594172503}
+  terminalHUD: {fileID: 461537256}
   cursor: {fileID: 850445784}
   platforms:
   - {fileID: 970255628}
@@ -67650,7 +67684,7 @@ GameObject:
   - component: {fileID: 533480961}
   m_Layer: 5
   m_Name: CursorPosition (1)
-  m_TagString: Untagged
+  m_TagString: CursorPosition
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -68624,7 +68658,7 @@ GameObject:
   - component: {fileID: 594172505}
   - component: {fileID: 594172507}
   m_Layer: 5
-  m_Name: Terminal
+  m_Name: TEste
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -68645,7 +68679,6 @@ RectTransform:
   - {fileID: 109781366}
   - {fileID: 663852246}
   - {fileID: 992885609}
-  - {fileID: 1270298099}
   - {fileID: 621573547}
   - {fileID: 513759594}
   - {fileID: 653817913}
@@ -68710,17 +68743,7 @@ MonoBehaviour:
   buttonsInTerminal: []
   buttonsToChoice: []
   deleteButton: {fileID: 11400000, guid: b789e7578a291c144be41fdce7df0927, type: 2}
-  positionsToChoice:
-  - {fileID: 977857982}
-  - {fileID: 1555703778}
-  - {fileID: 1067971337}
-  - {fileID: 378353906}
-  - {fileID: 1355819243}
-  - {fileID: 1861564624}
-  - {fileID: 331192075}
-  - {fileID: 719009244}
-  - {fileID: 346213616}
-  - {fileID: 1640424821}
+  internalPositionsToChoice: []
   postionsInTerminal:
   - {fileID: 1999409757}
   - {fileID: 1105346531}
@@ -68736,6 +68759,7 @@ MonoBehaviour:
   selectingInTerminalHud: {fileID: 513759593}
   deletingInTerminalHud: {fileID: 653817912}
   tutorialPanel: {fileID: 1198252678}
+  cursor: {fileID: 0}
 --- !u!1 &601467507
 GameObject:
   m_ObjectHideFlags: 0
@@ -68845,7 +68869,7 @@ GameObject:
   - component: {fileID: 607886141}
   m_Layer: 5
   m_Name: CursorPosition (1)
-  m_TagString: Untagged
+  m_TagString: CursorPosition
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -68899,7 +68923,7 @@ RectTransform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.7970667}
   m_Children: []
   m_Father: {fileID: 1270298099}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 90}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -69157,7 +69181,7 @@ RectTransform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.7970668}
   m_Children: []
   m_Father: {fileID: 1270298099}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -69233,7 +69257,7 @@ RectTransform:
   - {fileID: 406728918}
   - {fileID: 2104351673}
   m_Father: {fileID: 594172504}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -69438,7 +69462,7 @@ RectTransform:
   - {fileID: 1572428019}
   - {fileID: 52258021}
   m_Father: {fileID: 594172504}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -69978,7 +70002,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &676598694
 RectTransform:
   m_ObjectHideFlags: 0
@@ -70128,7 +70152,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &698693307
 RectTransform:
   m_ObjectHideFlags: 0
@@ -70832,7 +70856,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 500367436}
+  - {fileID: 1270298099}
   - {fileID: 1566821331}
   - {fileID: 1341705129}
   - {fileID: 1967336111}
@@ -71655,7 +71679,7 @@ MonoBehaviour:
   inBounds: 0
   bounds: {x: 0, y: 0, z: 0}
   position: {x: 0, y: 0, z: 0}
-  terminal: {fileID: 594172507}
+  terminal: {fileID: 461537258}
   gameManager: {fileID: 0}
   inputsButtons:
   - {fileID: 11400000, guid: 5865aa47cadfb8b4faadde4f03d13249, type: 2}
@@ -74003,7 +74027,7 @@ GameObject:
   - component: {fileID: 1074855426}
   m_Layer: 5
   m_Name: CursorPosition (4)
-  m_TagString: Untagged
+  m_TagString: CursorPosition
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -74820,7 +74844,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1128591052
 RectTransform:
   m_ObjectHideFlags: 0
@@ -75600,7 +75624,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1197731002
 RectTransform:
   m_ObjectHideFlags: 0
@@ -76404,22 +76428,23 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1270298098}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
+  m_LocalScale: {x: 0.1999993, y: 0.19999994, z: 1}
   m_Children:
   - {fileID: 1006400059}
+  - {fileID: 500367436}
   - {fileID: 1860819158}
   - {fileID: 608363638}
   - {fileID: 354642488}
   - {fileID: 616202238}
-  m_Father: {fileID: 594172504}
-  m_RootOrder: 4
+  m_Father: {fileID: 769584719}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -11.400024, y: -4.9}
-  m_SizeDelta: {x: -432, y: 100}
+  m_AnchoredPosition: {x: -11.399986, y: -4.9000015}
+  m_SizeDelta: {x: 296.80145, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1270298100
 MonoBehaviour:
@@ -76439,8 +76464,10 @@ MonoBehaviour:
   bottomRight: {fileID: 608363637}
   bottomLeft: {fileID: 1860819157}
   middlePoint: {fileID: 354642487}
-  terminal: {fileID: 594172507}
+  arrow: {fileID: 500367435}
+  terminal: {fileID: 461537258}
   InputHandler: {fileID: 613011079}
+  actualButtonInSelectPosition: {fileID: 11400000, guid: b7e588555dfe6d845bbabce38c70a2ed, type: 2}
   cursorInSelectPosition: 0
   cursorInTerminalPosition: 0
   timeToMove: 0.5
@@ -76759,7 +76786,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1341705129
 RectTransform:
   m_ObjectHideFlags: 0
@@ -79565,7 +79592,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1566821331
 RectTransform:
   m_ObjectHideFlags: 0
@@ -80297,7 +80324,7 @@ GameObject:
   - component: {fileID: 1675860812}
   m_Layer: 5
   m_Name: CursorPosition
-  m_TagString: Untagged
+  m_TagString: CursorPosition
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -80494,7 +80521,7 @@ GameObject:
   - component: {fileID: 1705154067}
   m_Layer: 5
   m_Name: CursorPosition (6)
-  m_TagString: Untagged
+  m_TagString: CursorPosition
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -81227,7 +81254,7 @@ GameObject:
   - component: {fileID: 1793762811}
   m_Layer: 5
   m_Name: CursorPosition (2)
-  m_TagString: Untagged
+  m_TagString: CursorPosition
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -81292,7 +81319,7 @@ GameObject:
   - component: {fileID: 1859857436}
   m_Layer: 5
   m_Name: CursorPosition (5)
-  m_TagString: Untagged
+  m_TagString: CursorPosition
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -81346,7 +81373,7 @@ RectTransform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.7970668}
   m_Children: []
   m_Father: {fileID: 1270298099}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -89353,7 +89380,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1967336111
 RectTransform:
   m_ObjectHideFlags: 0

@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 public class Terminal : MonoBehaviour
 {
     // Start is called before the first frame update
     public Button[] buttonsInTerminal;
     public Button[] buttonsToChoice;
     public Button deleteButton;
-    public GameObject[] positionsToChoice;
+    public GameObject[] internalPositionsToChoice;
+    public Dictionary<Button, GameObject>  positionsToChoice = new Dictionary<Button, GameObject>();
     public GameObject[] postionsInTerminal;
     public ProcesserInput processerInput;
     public GameObject selectingObjectButtonsHud;
@@ -23,14 +25,19 @@ public class Terminal : MonoBehaviour
         public Button left;
         public Button right;
     }
-    public Dictionary<Button, Connection> connections;
-    public void AllocTerminalSize(int size)
+    [SerializeField] public Dictionary<Button, Connection> connections = new Dictionary<Button, Connection>();
+    public void AllocTerminalSize()
     {
+        int size = internalPositionsToChoice.Length;
         buttonsInTerminal = new Button[size];
         processerInput.buttonsInTerminal = new Button[size];
     }
     public void SetConnection(Button button1, Button button2, string type)
     {
+        if(!connections.ContainsKey(button1))
+        {
+            connections[button1] = new Connection();
+        }
         Connection c = connections[button1];
         if (type == "up")
         {   
@@ -53,8 +60,7 @@ public class Terminal : MonoBehaviour
     }
     private void Start()
     {
-        if(buttonsInTerminal.Length <= 0)
-            AllocTerminalSize(postionsInTerminal.Length);
+        
 
     }
     public void SetQuantityOfButtonToChoice(int size)
@@ -97,6 +103,7 @@ public class Terminal : MonoBehaviour
     public void SetActualPlatform(ProcesserInput actualPlatform)
     {
         processerInput = actualPlatform;
+        AllocTerminalSize();
     }
     public void DiselectPlatform()
     {
@@ -120,10 +127,14 @@ public class Terminal : MonoBehaviour
     public void SetButtonToChoice(int position, Button button)
     {
         buttonsToChoice[position] = button;
-        positionsToChoice[position].GetComponent<Image>().sprite = button.buttonImage;
-        Color c = positionsToChoice[position].GetComponent<Image>().color;
-        c.a = 1;
-        positionsToChoice[position].GetComponent<Image>().color = c;
+        Debug.Log(position);
+        Debug.Log(internalPositionsToChoice.Length);
+        if(!positionsToChoice.ContainsKey(button))
+        {
+            positionsToChoice[button] = internalPositionsToChoice[position];
+        }
+        positionsToChoice[button].GetComponentInChildren<TMP_Text>().text = button.funtionName;
+        positionsToChoice[button].SetActive(true);
     }
     public void AddToTerminal(Button button, int position)
     {
