@@ -16,3 +16,4 @@ MonoBehaviour:
   buttonValue: NA
   description: This node will delete any node that you select.
   funtionName: Remove
+  isRemovalNode: 1

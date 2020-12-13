@@ -69,16 +69,10 @@ public class CursorSelectedObjectState : CursorState
                 stateMachine.ChangeState(player.CursorNormalMovement);
                 Button[] buttons = player.SelectedPlatform.GetComponent<ProcesserInput>().allowedButtons;
                 GameObject.FindObjectOfType<GameManager>().ChangeState(GameManager.GameState.TerminalMode);
-                //Debug.Break();
                 player.terminal.SetQuantityOfButtonToChoice(buttons.Length);
-                for (int i = 0; i < buttons.Length; i++)
-                { 
-                    player.terminal.SetButtonToChoice(i, buttons[i]);
-                }
-                Debug.LogError("Length "+player.SelectedPlatform.GetComponent<ProcesserInput>().connections.Length);
+                
                 foreach(ProcesserInput.Connection c in player.SelectedPlatform.GetComponent<ProcesserInput>().connections)
                 {
-                    Debug.LogError("Button "+c.button.name);
                     if(c.up)
                     {
                         player.terminal.SetConnection(c.button, c.up, "up");
@@ -95,6 +89,11 @@ public class CursorSelectedObjectState : CursorState
                     {
                         player.terminal.SetConnection(c.button, c.right, "right");
                     }
+                }
+                Debug.LogError("Quantidade de botões "+buttons.Length);
+                for (int i = 0; i < buttons.Length; i++)
+                { 
+                    player.terminal.SetButtonToChoice(i, buttons[i]);
                 }
                 player.terminal.SetActualPlatform(player.SelectedPlatform.GetComponent<ProcesserInput>());
                 Button[] buttonsInTerminal = player.SelectedPlatform.GetComponent<ProcesserInput>().buttonsInTerminal;

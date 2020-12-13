@@ -10,8 +10,8 @@ public class CursorTerminalDeletingState : CursorTerminalState
     }
     public override void Enter()
     {
-        player.SetPositionInTerminalPosition(0);
         player.cursorInTerminalPosition = 0;
+        player.SetPositionInTerminalPosition(0);
         player.terminal.ActivateDeletingInTerminalHud();
     }
     public override void Exit()
@@ -21,7 +21,7 @@ public class CursorTerminalDeletingState : CursorTerminalState
     }
     public override void LogicUpdate()
     {
-        int inputX = player.InputHandler.NormInputX;
+        int inputX = player.InputHandler.NormInputY;
         bool cancel = player.InputHandler.CancelInput;
         bool confirm = player.InputHandler.JumpInput;
         player.SetPositionInTerminalPosition(inputX);

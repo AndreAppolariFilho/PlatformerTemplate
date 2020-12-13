@@ -11,7 +11,8 @@ public class Terminal : MonoBehaviour
     public Button deleteButton;
     public GameObject[] internalPositionsToChoice;
     public Dictionary<Button, GameObject>  positionsToChoice = new Dictionary<Button, GameObject>();
-    public GameObject[] postionsInTerminal;
+    public InputTerminalController terminalController;
+    public List<GameObject> postionsInTerminal = new List<GameObject>();
     public ProcesserInput processerInput;
     public GameObject selectingObjectButtonsHud;
     public GameObject selectingInTerminalHud;
@@ -32,8 +33,13 @@ public class Terminal : MonoBehaviour
         buttonsInTerminal = new Button[size];
         processerInput.buttonsInTerminal = new Button[size];
     }
+    public List<GameObject> GetPositionsInTerminal()
+    {
+        return terminalController.postionsInTerminal;
+    }
     public void SetConnection(Button button1, Button button2, string type)
     {
+        Debug.LogError(button1.name);
         if(!connections.ContainsKey(button1))
         {
             connections[button1] = new Connection();
@@ -113,7 +119,7 @@ public class Terminal : MonoBehaviour
     {
         string word = "";
         
-        foreach(Button button in buttonsInTerminal)
+        foreach(Button button in terminalController.buttonsInTerminal)
         {
             if (button)
                 word += button.buttonValue;
@@ -126,6 +132,7 @@ public class Terminal : MonoBehaviour
     }
     public void SetButtonToChoice(int position, Button button)
     {
+        Debug.LogError("Button To Choice "+button.name);
         buttonsToChoice[position] = button;
         Debug.Log(position);
         Debug.Log(internalPositionsToChoice.Length);
@@ -138,7 +145,7 @@ public class Terminal : MonoBehaviour
     }
     public void AddToTerminal(Button button, int position)
     {
-        if (position < buttonsInTerminal.Length)
+        if (position < terminalController.buttonsInTerminal.Count)
         { 
             buttonsInTerminal[position] = button;
             processerInput.buttonsInTerminal[position] = button;
@@ -165,6 +172,7 @@ public class Terminal : MonoBehaviour
             return buttonsInTerminal[position];
         return buttonsInTerminal[buttonsInTerminal.Length - 1];
     }
+    
     public void Validate()
     {
 

@@ -38,8 +38,12 @@ public class CursorTerminalSelecting : CursorTerminalState
         if(confirm)
         {
             player.InputHandler.UseJumpInput();
-            if(player.terminal.positionsToChoice[player.actualButtonInSelectPosition].CompareTag("DeleteButton"))
+            Debug.LogError(player.actualButtonInSelectPosition.name);
+            Debug.LogError(player.actualButtonInSelectPosition.isRemovalNode);
+            if(player.actualButtonInSelectPosition.isRemovalNode)
             {
+                Debug.LogError("DeleteState");
+                player.SelectButton(player.actualButtonInSelectPosition);
                 stateMachine.ChangeState(player.CursorTerminalDeleting);
             }
             else { 
@@ -50,7 +54,7 @@ public class CursorTerminalSelecting : CursorTerminalState
         if(showInfo)
         {
             player.InputHandler.UseInteractInput();
-            if (player.terminal.positionsToChoice[player.actualButtonInSelectPosition].CompareTag("DeleteButton"))
+            if (player.actualButtonInSelectPosition.isRemovalNode)
             {
                 player.SelectButton(player.terminal.deleteButton);
             }

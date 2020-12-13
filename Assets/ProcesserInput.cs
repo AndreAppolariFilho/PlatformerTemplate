@@ -66,8 +66,6 @@ public class ProcesserInput : MonoBehaviour
         gameManager = FindObjectOfType<GameManager>();
         m_firstWaypoint = m_currWaypoint;
         to_end_for_loop = LanguageParser.GetTokensForLoop(word);
-        //Debug.Log(to_end_for_loop.Count);
-        //Debug.Break();
         to_begin_for_loop = new Dictionary<int, int>();
         for_loop_state = new Dictionary<int, List<int>>();
         foreach (KeyValuePair<int, int> dict in to_end_for_loop)
@@ -78,10 +76,7 @@ public class ProcesserInput : MonoBehaviour
             int max = LanguageParser.GetNumberOfTimes(word, dict.Key, out key);
             for_loop_state[dict.Key].Add(0);
             for_loop_state[dict.Key].Add(max);
-            //Debug.Log("Chave "+ dict.Key);
-
         }
-        //Debug.Break();
     }
     public void SetWord(string word)
     {
@@ -266,14 +261,10 @@ public class ProcesserInput : MonoBehaviour
                     switch (type)
                     {
                         case LanguageEnums.Types.turnClockWise:
-                            //Debug.Log("Angle" + Vector3.forward * angularSpeed * Time.deltaTime);
                             this.transform.Rotate(Vector3.forward * angularSpeed * Time.deltaTime);
-                            //Debug.Break();
                             break;
                         case LanguageEnums.Types.turnAntiClockWise:
-                            //Debug.Log("Angle" + (-1 * Vector3.forward * angularSpeed * Time.deltaTime));
                             this.transform.Rotate(-1 * Vector3.forward * angularSpeed * Time.deltaTime);
-                            //Debug.Break();
                             break;
                     }
                 }

@@ -15,11 +15,6 @@ public class CursorTerminal : MonoBehaviour
     public CursorShowInformation CursorShowInfo;
     #endregion
     public Button selectedButton;
-    public GameObject upLeft;
-    public GameObject upRight;
-    public GameObject bottomRight;
-    public GameObject bottomLeft;
-    public GameObject middlePoint;
     public GameObject arrow;
     public Terminal terminal;
     public PlayerInputHandler InputHandler;
@@ -42,22 +37,11 @@ public class CursorTerminal : MonoBehaviour
     }
     void Start()
     {
-        Debug.LogError(this.gameObject.name);
-        Debug.LogError(terminal.gameObject.name);
+        
         actualButtonInSelectPosition = terminal.buttonsToChoice[0];
         this.SetPositionInSelectPosition(0, 0);
-        
         //SetSize(terminal.positionsToChoice[0].GetComponent<Image>().sprite.rect.width * 2, terminal.positionsToChoice[0].GetComponent<Image>().sprite.rect.height * 2);
-        
-    }
-
-    public void SetSize(float w, float h)
-    {
-        upLeft.transform.position = new Vector2(middlePoint.transform.position.x - (w / 2.0f), middlePoint.transform.position.y + (h / 2.0f));
-        upRight.transform.position = new Vector2(middlePoint.transform.position.x + (w / 2.0f), middlePoint.transform.position.y + (h / 2.0f));
-        bottomRight.transform.position = new Vector2(middlePoint.transform.position.x + (w / 2.0f), middlePoint.transform.position.y - (h / 2.0f));
-        bottomLeft.transform.position = new Vector2(middlePoint.transform.position.x - (w / 2.0f), middlePoint.transform.position.y - (h / 2.0f));
-    }
+    }    
     public void SelectButton(Button button)
     {
         selectedButton = button;
@@ -68,63 +52,34 @@ public class CursorTerminal : MonoBehaviour
     }
     public void SetButtonInTerminal(int position, Button image)
     {
-        terminal.postionsInTerminal[position].GetComponent<Image>().sprite = null;
-        Color c = terminal.postionsInTerminal[position].GetComponent<Image>().color;
-        c.a = 1;
-        terminal.postionsInTerminal[position].GetComponent<Image>().color = c;
-        terminal.postionsInTerminal[position].GetComponent<Image>().sprite = image.buttonImage;
-        terminal.buttonsInTerminal[position] = image;
-        if(terminal.processerInput.buttonsInTerminal.Length <= 0)
+        terminal.terminalController.SetText(position, image.funtionName);
+        if(position == terminal.GetPositionsInTerminal().Count - 1)
         {
-            terminal.processerInput.buttonsInTerminal = new Button[terminal.postionsInTerminal.Length];
+            terminal.terminalController.AddNewPosition();
         }
-        terminal.processerInput.buttonsInTerminal[position] = image;
+        terminal.terminalController.SetButton(position, image);
+        
     }
     public void deleteButtonInTerminal(int position)
     {
-        terminal.postionsInTerminal[position].GetComponent<Image>().sprite = null;
-        Color c = terminal.postionsInTerminal[position].GetComponent<Image>().color;
-        c.a = 0;
-        terminal.postionsInTerminal[position].GetComponent<Image>().color = c;
-        terminal.buttonsInTerminal[position] = null;
+        terminal.terminalController.SetText(position, "");
+        
+        if(terminal.terminalController.buttonsInTerminal.Count > 1)
+        {
+            if(position == terminal.terminalController.buttonsInTerminal.Count - 2)
+            {
+                terminal.terminalController.buttonsInTerminal[position] = null;
+                terminal.terminalController.buttonsInTerminal.RemoveAt(terminal.terminalController.buttonsInTerminal.Count - 1);
+                terminal.terminalController.postionsInTerminal.RemoveAt(terminal.terminalController.postionsInTerminal.Count - 1);
+            }
+        }
     }
     public void SetPositionInSelectPosition(int input_x, int input_y)
     {
-        Debug.LogError("Input Y "+input_y);
         if (currentTimeToMove <= 0)
         {
-            
-            /*if (input_x > 0 && cursorInSelectPosition < terminal.buttonsToChoice.Length - 1)
-            {
-                cursorInSelectPosition++;
-                currentTimeToMove = timeToMove;
-            }
-            else if(input_x > 0 && cursorInSelectPosition >= terminal.buttonsToChoice.Length - 1)
-            {
-                cursorInSelectPosition = terminal.positionsToChoice.Length - 1;
-                currentTimeToMove = timeToMove;
-            }
-            if(input_x < 0 && cursorInSelectPosition > terminal.buttonsToChoice.Length - 1)
-            {
-                cursorInSelectPosition = terminal.buttonsToChoice.Length - 1;
-                currentTimeToMove = timeToMove;
-            }
-            else if (input_x < 0 && cursorInSelectPosition > 0)
-            {
-                cursorInSelectPosition--;
-                currentTimeToMove = timeToMove;
-            }
-            //middlePoint.transform.position = terminal.positionsToChoice[cursorInSelectPosition].transform.position;
-        }*/
             if(input_x > 0)
             {
-                Debug.LogError(actualButtonInSelectPosition.name);
-                Debug.LogError(terminal.connections.ContainsKey(actualButtonInSelectPosition));
-                Debug.LogError(terminal.connections.Count);
-                foreach(KeyValuePair<Button, Terminal.Connection> c in terminal.connections)
-                {
-                    Debug.LogError(c.Key);
-                }
                 if(terminal.connections[actualButtonInSelectPosition].right)
                 {
                     actualButtonInSelectPosition = terminal.connections[actualButtonInSelectPosition].right;
@@ -156,9 +111,8 @@ public class CursorTerminal : MonoBehaviour
                 }
             }
         }
-         Debug.LogError(actualButtonInSelectPosition.name);
-         if(terminal.positionsToChoice.ContainsKey(actualButtonInSelectPosition))
-         {
+        if(terminal.positionsToChoice.ContainsKey(actualButtonInSelectPosition))
+        {
             for(int i = 0; i < terminal.positionsToChoice[actualButtonInSelectPosition].transform.childCount; i++)
             {
                 Transform child = terminal.positionsToChoice[actualButtonInSelectPosition].transform.GetChild(i);
@@ -172,27 +126,54 @@ public class CursorTerminal : MonoBehaviour
         }
         this.transform.localPosition = Vector3.zero;
         arrow.transform.localPosition = Vector3.zero;
-        middlePoint.transform.localPosition = Vector3.zero;
     }
     
-    public void SetPositionInTerminalPosition(int input_x)
+    public void SetPositionInTerminalPosition(int input_y)
     {
+        if(!selectedButton.isRemovalNode)
+        {
+            if(!terminal.terminalController.buttonsInTerminal[cursorInTerminalPosition])
+                terminal.terminalController.SetText(cursorInTerminalPosition, "");
+            else
+                terminal.terminalController.SetText(cursorInTerminalPosition, terminal.terminalController.buttonsInTerminal[cursorInTerminalPosition].funtionName);
+        }
         if(currentTimeToMove <= 0)
-        { 
-            if(input_x > 0 && cursorInTerminalPosition < terminal.postionsInTerminal.Length - 1)
+        {
+            
+            if(input_y < 0 && cursorInTerminalPosition < terminal.GetPositionsInTerminal().Count - 1)
             {
                 cursorInTerminalPosition++;
                 currentTimeToMove = timeToMove;
             }
-            if (input_x < 0 && cursorInTerminalPosition > 0)
+            if (input_y > 0 && cursorInTerminalPosition > 0)
             {
                 cursorInTerminalPosition--;
                 currentTimeToMove = timeToMove;
             }
         }
-        this.transform.parent = terminal.postionsInTerminal[cursorInTerminalPosition].transform;
+        if(!selectedButton.isRemovalNode)
+        {
+            Debug.LogError(cursorInTerminalPosition);
+            Debug.LogError(terminal.GetPositionsInTerminal().Count);
+            terminal.terminalController.SetText(cursorInTerminalPosition, selectedButton.funtionName);
+        }
+        SetCursor(cursorInTerminalPosition, arrow);
+        
+    }
+    public void SetCursor(int position, GameObject cursor)
+    {
+        for(int i = 0; i < terminal.terminalController.postionsInTerminal[position].transform.childCount; i++)
+        {
+            Transform child = terminal.terminalController.postionsInTerminal[position].transform.GetChild(i);
+            if(child.tag == "CursorPosition")
+            {
+                this.transform.parent = child;
+                break;
+            }
+            
+        }
         this.transform.localPosition = Vector3.zero;
-        middlePoint.transform.localPosition = Vector3.zero;
+        cursor.transform.localPosition = Vector3.zero;
     }
     // Update is called once per frame
     void Update()
@@ -204,19 +185,19 @@ public class CursorTerminal : MonoBehaviour
         {
             currentTimeToMove -= Time.deltaTime;
         }
-        if(selectedButton)
-        {
-            Color c = middlePoint.GetComponent<Image>().color;
-            c.a = 1;
-            middlePoint.GetComponent<Image>().color = c;
-            middlePoint.GetComponent<Image>().sprite = selectedButton.buttonImage;
-        }
-        else
-        {
-            Color c = middlePoint.GetComponent<Image>().color;
-            c.a = 0;
-            middlePoint.GetComponent<Image>().color = c;
-        }
+        //if(selectedButton)
+        //{
+        //    Color c = middlePoint.GetComponent<Image>().color;
+        //    c.a = 1;
+        //    middlePoint.GetComponent<Image>().color = c;
+        //    middlePoint.GetComponent<Image>().sprite = selectedButton.buttonImage;
+        //}
+        //else
+        //{
+        //    Color c = middlePoint.GetComponent<Image>().color;
+        //    c.a = 0;
+        //    middlePoint.GetComponent<Image>().color = c;
+        //}
         
     }
 }

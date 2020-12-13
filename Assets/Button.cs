@@ -8,4 +8,5 @@ public class Button : ScriptableObject
     public string buttonValue;
     public string description;
     public string funtionName;
+    public bool isRemovalNode;
 }
