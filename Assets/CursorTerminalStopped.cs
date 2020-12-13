@@ -14,6 +14,7 @@ public class CursorTerminalStopped : CursorTerminalState
         //if (GameObject.FindObjectOfType<GameManager>().currentState == GameManager.GameState.TerminalMode)
         //    GameObject.FindObjectOfType<GameManager>().ChangeState(GameManager.GameState.CursorMode);
         player.terminal.ActivateObjectButtonsHud();
+        player.terminal.terminalController.DeactivateScrollBar();
 
     }
     public override void Exit()

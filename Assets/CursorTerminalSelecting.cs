@@ -14,6 +14,7 @@ public class CursorTerminalSelecting : CursorTerminalState
     {
         player.DiselectButton();
         player.terminal.ActivateObjectButtonsHud();
+        player.terminal.terminalController.DeactivateScrollBar();
     }
     public override void Exit()
     {

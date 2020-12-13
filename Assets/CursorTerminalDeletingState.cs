@@ -18,6 +18,7 @@ public class CursorTerminalDeletingState : CursorTerminalState
     {
         player.cursorInTerminalPosition = 0;
         player.terminal.DeactivateDeletingInTerminalHud();
+        player.terminal.terminalController.ActivateScrollBar();
     }
     public override void LogicUpdate()
     {

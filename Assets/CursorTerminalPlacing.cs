@@ -14,6 +14,7 @@ public class CursorTerminalPlacing : CursorTerminalState
         player.cursorInTerminalPosition = player.terminal.GetPositionsInTerminal().Count - 1;
         player.SetPositionInTerminalPosition(0);
         player.terminal.ActivateSelectingInTerminalHud();
+        player.terminal.terminalController.ActivateScrollBar();
     }
     public override void Exit()
     {

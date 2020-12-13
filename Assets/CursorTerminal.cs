@@ -137,24 +137,38 @@ public class CursorTerminal : MonoBehaviour
             else
                 terminal.terminalController.SetText(cursorInTerminalPosition, terminal.terminalController.buttonsInTerminal[cursorInTerminalPosition].funtionName);
         }
+        if(input_y > 0 && terminal.terminalController.isTopPosition(cursorInTerminalPosition))
+        {
+            terminal.terminalController.ReassingToDownPositions();
+        }
+        if(terminal.terminalController.isBottonPosition(cursorInTerminalPosition))
+        {
+            Debug.LogError(terminal.terminalController.postionsInTerminal[cursorInTerminalPosition].transform.localPosition.y);
+            Debug.LogError(terminal.terminalController.firstPositionInTerminal.transform.localPosition.y);
+            Debug.LogError("To Up");
+            terminal.terminalController.ReassignToUpPositions();
+        }
+        
+        
         if(currentTimeToMove <= 0)
         {
             
             if(input_y < 0 && cursorInTerminalPosition < terminal.GetPositionsInTerminal().Count - 1)
             {
+                
                 cursorInTerminalPosition++;
                 currentTimeToMove = timeToMove;
             }
             if (input_y > 0 && cursorInTerminalPosition > 0)
             {
+                
                 cursorInTerminalPosition--;
                 currentTimeToMove = timeToMove;
             }
         }
+        terminal.terminalController.SetActualIndexPosition(cursorInTerminalPosition);        
         if(!selectedButton.isRemovalNode)
         {
-            Debug.LogError(cursorInTerminalPosition);
-            Debug.LogError(terminal.GetPositionsInTerminal().Count);
             terminal.terminalController.SetText(cursorInTerminalPosition, selectedButton.funtionName);
         }
         SetCursor(cursorInTerminalPosition, arrow);
@@ -180,7 +194,6 @@ public class CursorTerminal : MonoBehaviour
     {
         
         StateMachine.CurrentState.LogicUpdate();
-        Debug.Log(StateMachine.CurrentState.ToString());
         if (currentTimeToMove > 0)
         {
             currentTimeToMove -= Time.deltaTime;
