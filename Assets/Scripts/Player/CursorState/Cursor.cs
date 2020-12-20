@@ -25,8 +25,8 @@ public class Cursor : MonoBehaviour
     public GameObject bottomLeft;
     public GameObject middlePoint;
     public GameObject SelectedPlatform;
-    public float width = 1;
-    public float height = 1;
+    public float width = 0.25f;
+    public float height = 0.25f;
     public bool inBounds = false;
     public Vector3 bounds;
     public Vector3 position;
@@ -73,10 +73,10 @@ public class Cursor : MonoBehaviour
     }
     public void SetSize(float w, float h)
     {
-        upLeft.transform.position = new Vector2(middlePoint.transform.position.x - (w / 2.0f), middlePoint.transform.position.y + (h / 2.0f));
-        upRight.transform.position = new Vector2(middlePoint.transform.position.x + (w / 2.0f), middlePoint.transform.position.y + (h / 2.0f));
-        bottomRight.transform.position = new Vector2(middlePoint.transform.position.x + (w / 2.0f), middlePoint.transform.position.y - (h / 2.0f));
-        bottomLeft.transform.position = new Vector2(middlePoint.transform.position.x - (w / 2.0f), middlePoint.transform.position.y - (h / 2.0f));
+        upLeft.transform.position = new Vector2(middlePoint.transform.position.x - (w / 2.0f) - (width / 2.0f), middlePoint.transform.position.y + (h / 2.0f) + (height / 2.0f));
+        upRight.transform.position = new Vector2(middlePoint.transform.position.x + (w / 2.0f) + (width / 2.0f), middlePoint.transform.position.y + (h / 2.0f) + (height / 2.0f));
+        bottomRight.transform.position = new Vector2(middlePoint.transform.position.x + (w / 2.0f) + (width / 2.0f), middlePoint.transform.position.y - (h / 2.0f) - (height / 2.0f));
+        bottomLeft.transform.position = new Vector2(middlePoint.transform.position.x - (w / 2.0f) - (width / 2.0f), middlePoint.transform.position.y - (h / 2.0f) - (height / 2.0f));
     }
     public bool IsColliding()
     {

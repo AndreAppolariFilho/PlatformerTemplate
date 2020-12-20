@@ -24,8 +24,8 @@ TagManager:
   - wall
   - layer
   - ladder
-  - 
-  - 
+  - PostProcessing
+  - UIGameSpace
   - 
   - 
   - 

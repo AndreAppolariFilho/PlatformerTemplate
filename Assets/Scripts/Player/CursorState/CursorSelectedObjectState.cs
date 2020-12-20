@@ -59,7 +59,7 @@ public class CursorSelectedObjectState : CursorState
 
             if (x != 0 || y != 0)
             {
-                player.transform.position = new Vector2(player.middlePoint.transform.position.x + x * ((player.bounds.x / 2) + (player.upLeft.transform.localScale.x / 2)), player.middlePoint.transform.position.y + y * ((player.bounds.y / 2) + (player.upLeft.transform.localScale.y / 2)));
+                player.transform.position = new Vector2(player.middlePoint.transform.position.x + x * ((player.bounds.x / 2) + (player.upLeft.transform.localScale.x / 2) + 0.25f), player.middlePoint.transform.position.y + y * ((player.bounds.y / 2) + (player.upLeft.transform.localScale.y / 2) + 0.25f) );
                 stateMachine.ChangeState(player.CursorNormalMovement);
             }
             if(selected)

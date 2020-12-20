@@ -44,6 +44,10 @@ public class GameManager : Manager<GameManager>
     #endregion
     #region MovingPlatforms
     public ProcesserInput[] platforms;
+    public GameObject postProcessingEffect;
+    #endregion
+    #region CameraEffects
+    public Animator CameraAnim;
     #endregion
     private void Awake()
     {
@@ -76,6 +80,27 @@ public class GameManager : Manager<GameManager>
         foreach (ProcesserInput p in platforms)
             p.ChangeToPreviewMode();
     }
+    public void SwitchToCursorCamera()
+    {
+        if(currentState == GameState.CursorMode)
+        {
+            cameraPlayer.SetActive(false);
+            cameraCursor.SetActive(true);
+            cursor.gameObject.SetActive(true);
+            postProcessingEffect.SetActive(true);
+            cursorHUD.SetActive(true);
+            terminalHUD.SetActive(false);
+        }
+        if(currentState == GameState.PlayerMode)
+        {
+            cameraPlayer.SetActive(true);
+            cameraCursor.SetActive(false);
+            cursor.gameObject.SetActive(false);
+            postProcessingEffect.SetActive(false);
+            cursorHUD.SetActive(false);
+            terminalHUD.SetActive(false);
+        }
+    }
     public void ChangeState(GameState state)
     {
         if(currentTimeStateChanged <= 0)
@@ -84,21 +109,22 @@ public class GameManager : Manager<GameManager>
         }
         if(state == GameState.CursorMode )
         {
-            cursor.gameObject.SetActive(true);
-            
+            //CameraAnim.Play("camera_glitch");
+            CameraAnim.SetTrigger("Glitch");
             currentTimeStateChanged = timeBetweenChangeStates;
             Debug.Log(cameraPlayer);
-            cameraPlayer.SetActive(false);
-            cameraCursor.SetActive(true);
             currentState = GameState.CursorMode;
-            cursorHUD.SetActive(true);
-            terminalHUD.SetActive(false);
         }
         else if(state == GameState.PlayerMode)
         {   
             currentTimeStateChanged = timeBetweenChangeStates;
+            postProcessingEffect.SetActive(false);
             cameraPlayer.SetActive(true);
             cameraCursor.SetActive(false);
+            if(currentState == GameState.CursorMode)
+            {
+                CameraAnim.SetTrigger("Glitch");
+            }
             currentState = GameState.PlayerMode;
             cursorHUD.SetActive(false);
             terminalHUD.SetActive(false);
@@ -106,6 +132,7 @@ public class GameManager : Manager<GameManager>
         else if(state == GameState.TerminalMode)
         {   
             currentTimeStateChanged = timeBetweenChangeStates;
+            postProcessingEffect.SetActive(false);
             cameraPlayer.SetActive(false);
             cameraCursor.SetActive(true);
             currentState = GameState.TerminalMode;
