@@ -11,7 +11,6 @@ public class PlayerWallClimbState : PlayerTouchingWallState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-
         if (!isExitingState)
         {
             player.SetVelocityY(playerData.wallClimbVelocity);

@@ -28,6 +28,8 @@ public class PlayerMoveState : PlayerGroundedState
         base.LogicUpdate();
 
         player.CheckIfShouldFlip(xInput);
+        player.RB.constraints = RigidbodyConstraints2D.None;
+        player.RB.constraints = RigidbodyConstraints2D.FreezeRotation;
 
         player.SetVelocityX(playerData.movementVelocity * xInput);
 
@@ -35,10 +37,19 @@ public class PlayerMoveState : PlayerGroundedState
         {
             stateMachine.ChangeState(player.IdleState);
         }
+        //if(xInput != 0)
+        //{
+        //    if(player.isOnSlope)
+        //    {
+        //        stateMachine.ChangeState(player.SlopeWalkState);
+        //    }
+        //}
     }
 
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
+        
+        //player.SetVelocityX(playerData.movementVelocity * xInput);
     }
 }

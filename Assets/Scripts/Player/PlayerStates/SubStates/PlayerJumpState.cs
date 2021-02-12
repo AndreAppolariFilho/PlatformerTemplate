@@ -17,9 +17,28 @@ public class PlayerJumpState : PlayerAbilityState
         base.Enter();
         player.InputHandler.UseJumpInput();
         player.SetVelocityY(playerData.jumpVelocity);
-        isAbilityDone = true;
+        if(!player.CheckIfGrounded())
+            isAbilityDone = true;
         amountOfJumpsLeft--;
+        player.RB.constraints = RigidbodyConstraints2D.None;
+        player.RB.constraints = RigidbodyConstraints2D.FreezeRotation;
         player.InAirState.SetIsJumping();
+        
+    }
+    public override void DoChecks()
+    {
+        base.DoChecks();
+        if(player.CurrentVelocity.y > 0)
+            isAbilityDone = true;
+        
+    }
+    public override void LogicUpdate()
+    {
+        base.LogicUpdate();
+        
+            
+            player.SetVelocityY(playerData.jumpVelocity);
+        
     }
 
     public bool CanJump()

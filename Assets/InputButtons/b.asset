@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: b
   m_EditorClassIdentifier: 
   image: {fileID: 4985845169117699134, guid: 7e78db5f5a80c254b95139947dd3adb2, type: 3}
-  name: cancel
+  name: exit

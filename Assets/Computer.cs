@@ -8,6 +8,8 @@ public class Computer : MonoBehaviour
     public bool playerEntered = false;
     public PlayerInputHandler inputHandler;
     GameManager gameManager;
+    public Transform playerPosition;
+    Player player;
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
@@ -16,24 +18,56 @@ public class Computer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(player)
+        {
+            if(playerEntered)
+            {
+                if(player.canDisplayInteractPanel)
+                { 
+                    player.ActivatePanel();
+                    if (inputHandler.InteractInput)
+                    {
+                        inputHandler.UseInteractInput();
+                        if (gameManager.cameraPlayer)
+                        {
+                            //Debug.Log(gameManager.cameraPlayer.name);
+                        }
+                        playerEntered = false;
+                        gameManager.ChangeState(GameManager.GameState.CursorMode);
+                        player.SetToComputerState(playerPosition);
+
+                    }
+                }
+                else
+                {
+                    player.DeactivatePanel();
+                }
+            }
+            else
+            {
+                player.DeactivatePanel();
+            }
+        }        
     }
     public void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            Player player = collision.GetComponent<Player>();
+            player = collision.GetComponent<Player>();
             if(player.canDisplayInteractPanel)
             { 
                 player.ActivatePanel();
+                playerEntered = true;
                 if (inputHandler.InteractInput)
                 {
                     inputHandler.UseInteractInput();
                     if (gameManager.cameraPlayer)
                     {
-                        Debug.Log(gameManager.cameraPlayer.name);
+                        //Debug.Log(gameManager.cameraPlayer.name);
                     }
+                    
                     gameManager.ChangeState(GameManager.GameState.CursorMode);
+                    player.SetToComputerState(playerPosition);
 
                 }
             }
@@ -43,35 +77,13 @@ public class Computer : MonoBehaviour
             }
         }
     }
-    public void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            Player player = collision.GetComponent<Player>();
-            if (player.canDisplayInteractPanel)
-            {
-                player.ActivatePanel();
-                if (inputHandler.InteractInput)
-                {
-                    inputHandler.UseInteractInput();
-                    if (gameManager.cameraPlayer)
-                    {
-                        Debug.Log(gameManager.cameraPlayer.name);
-                    }
-                    gameManager.ChangeState(GameManager.GameState.CursorMode);
-
-                }
-            }
-            else
-            {
-                player.DeactivatePanel();
-            }
-        }
-    }
+    
     public void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
+            playerEntered = false;
+            player = null;
             collision.GetComponent<Player>().DeactivatePanel();
         }
     }

@@ -13,10 +13,17 @@ public class CursorTerminalSelecting : CursorTerminalState
     public override void Enter()
     {
         player.DiselectButton();
+        player.actualButtonInSelectPosition = player.terminal.buttonsToChoice[0];
+        player.SetPositionInSelectPosition(0, 0);
         player.terminal.ActivateObjectButtonsHud();
+        player.terminal.terminalController.DeactivateScrollBar();
     }
     public override void Exit()
     {
+        player.cursorInSelectPosition = 0;
+        player.actualButtonInSelectPosition = player.terminal.buttonsToChoice[0];
+        player.SetPositionInSelectPosition(0, 0);
+        
         
         player.terminal.DeactivateObjectButtonsHud();
     }
@@ -38,25 +45,25 @@ public class CursorTerminalSelecting : CursorTerminalState
         if(confirm)
         {
             player.InputHandler.UseJumpInput();
-            Debug.Log(player.terminal.positionsToChoice[player.cursorInSelectPosition].tag);
-            if(player.terminal.positionsToChoice[player.cursorInSelectPosition].CompareTag("DeleteButton"))
+            if(player.actualButtonInSelectPosition.isRemovalNode)
             {
+                player.SelectButton(player.actualButtonInSelectPosition);
                 stateMachine.ChangeState(player.CursorTerminalDeleting);
             }
             else { 
-                player.SelectButton(player.terminal.buttonsToChoice[player.cursorInSelectPosition]);
+                player.SelectButton(player.actualButtonInSelectPosition);
                 stateMachine.ChangeState(player.CursorPlacingState);
             }
         }
         if(showInfo)
         {
             player.InputHandler.UseInteractInput();
-            if (player.terminal.positionsToChoice[player.cursorInSelectPosition].CompareTag("DeleteButton"))
+            if (player.actualButtonInSelectPosition.isRemovalNode)
             {
                 player.SelectButton(player.terminal.deleteButton);
             }
             else { 
-                player.SelectButton(player.terminal.buttonsToChoice[player.cursorInSelectPosition]);
+                player.SelectButton(player.actualButtonInSelectPosition);
             }
             stateMachine.ChangeState(player.CursorShowInfo);
         }

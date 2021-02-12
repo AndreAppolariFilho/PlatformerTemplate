@@ -23,6 +23,7 @@ public class PlayerInputHandler : MonoBehaviour
     public bool DashInputStop { get; private set; }
     public bool ActionInput { get; private set; }
     public bool ConfirmInput { get; private set; }
+    public bool PausedInput {get; private set; }
     [SerializeField]
     private float inputHoldTime = 0.2f;
 
@@ -153,6 +154,17 @@ public class PlayerInputHandler : MonoBehaviour
             InteractInput = false;
         }
     }
+    public void OnPausedInput(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            PausedInput = true;
+        }
+        else if(context.canceled)
+        {
+            PausedInput = false;
+        }
+    }
     public void OnConfirmInput(InputAction.CallbackContext context)
     {
         if(context.started)
@@ -170,6 +182,7 @@ public class PlayerInputHandler : MonoBehaviour
     public void UseActionInput() => ActionInput = false;
     public void UseConfirmInput() => ConfirmInput = false;
     public void UseInteractInput() => InteractInput = false;
+    public void UsePausedInput() => PausedInput = false;
     private void CheckJumpInputHoldTime()
     {
         if(Time.time >= jumpInputStartTime + inputHoldTime)

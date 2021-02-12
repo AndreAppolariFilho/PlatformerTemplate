@@ -16,6 +16,8 @@ public class CursorSelectedObjectState : CursorState
     public override void Enter()
     {
         base.Enter();
+        player.DeactivateCursor();
+        player.ActivateCursorSelected();
         player.SetSize(player.bounds.x, player.bounds.y);
         player.transform.position = player.position;
         currentTime = waitTime;
@@ -34,11 +36,12 @@ public class CursorSelectedObjectState : CursorState
     }
     public override void Exit()
     {
-
+        player.ActivateCursor();
+        player.DeactivateCursorSelected();
         player.buttonsObjects[1].SetActive(false);
         if (player.gameManager.HasPlatformWithCommand())
         {
-
+            //Debug.LogError(player.inputsButtons[2].image.name);
             player.buttonsObjects[1].GetComponentInChildren<Image>().sprite = player.inputsButtons[2].image;
             player.buttonsObjects[1].GetComponentInChildren<TMP_Text>().text = player.inputsButtons[2].name;
             player.buttonsObjects[1].SetActive(true);
@@ -59,7 +62,7 @@ public class CursorSelectedObjectState : CursorState
 
             if (x != 0 || y != 0)
             {
-                player.transform.position = new Vector2(player.middlePoint.transform.position.x + x * ((player.bounds.x / 2) + (player.upLeft.transform.localScale.x / 2)), player.middlePoint.transform.position.y + y * ((player.bounds.y / 2) + (player.upLeft.transform.localScale.y / 2)));
+                player.transform.position = new Vector2(player.middlePoint.transform.position.x + x * ((player.bounds.x / 2) + (player.upLeft.transform.localScale.x / 2) + 1), player.middlePoint.transform.position.y + y * ((player.bounds.y / 2) + (player.upLeft.transform.localScale.y / 2) + 1) );
                 stateMachine.ChangeState(player.CursorNormalMovement);
             }
             if(selected)
@@ -67,41 +70,69 @@ public class CursorSelectedObjectState : CursorState
                 
                 player.InputHandler.UseJumpInput();
                 stateMachine.ChangeState(player.CursorNormalMovement);
-                Button[] buttons = player.SelectedPlatform.GetComponent<ProcesserInput>().allowedButtons;
+                Button[] buttons = player.gameManager.allowedButtons;
                 GameObject.FindObjectOfType<GameManager>().ChangeState(GameManager.GameState.TerminalMode);
-                //Debug.Break();
                 player.terminal.SetQuantityOfButtonToChoice(buttons.Length);
+                if(player.SelectedPlatform.GetComponent<ProcesserInput>().word == "")
+                {
+                    player.terminal.ClearInputTerminal();
+                }
+                player.terminal.terminalController.ResetInputTerminalController();
+                
+                Button[] allowedButtons = player.gameManager.allowedButtons;
+                int position = 0;                
+                foreach (char w in player.SelectedPlatform.GetComponent<ProcesserInput>().word)
+                {
+                    Button selected_button = null;
+                    foreach(Button allowedButton in allowedButtons)
+                    {
+                        if(allowedButton.buttonValue[0] == w)
+                        {
+                            player.terminal.terminalController.AddNewPosition();
+                            player.terminal.terminalController.SetText(position, allowedButton.funtionName);
+                            player.terminal.terminalController.SetButton(position, allowedButton);
+                            position += 1;
+                        }
+                        
+                    }
+                }
+                foreach(ProcesserInput.Connection c in player.SelectedPlatform.GetComponent<ProcesserInput>().connections)
+                {
+                    
+                    if(c.up)
+                    {
+                        
+                        player.terminal.SetConnection(c.button, c.up, "up");
+                    }
+                    if(c.left)
+                    {
+                        
+                        player.terminal.SetConnection(c.button, c.left, "left");
+                    }
+                    if(c.down)
+                    {
+                        
+                        player.terminal.SetConnection(c.button, c.down, "down");
+                    }
+                    if(c.right)
+                    {
+                        
+                        player.terminal.SetConnection(c.button, c.right, "right");
+                    }
+                }
                 for (int i = 0; i < buttons.Length; i++)
                 { 
                     player.terminal.SetButtonToChoice(i, buttons[i]);
                 }
-                foreach(ProcesserInput.Connection c in player.SelectedPlatform.GetComponent<ProcesserInput>().connections)
-                {
-                    if(c.up)
-                    {
-                        player.terminal.SetConnection(c.button, c.up, "up");
-                    }
-                    if(c.down)
-                    {
-                        player.terminal.SetConnection(c.button, c.down, "down");
-                    }
-                    if(c.left)
-                    {
-                        player.terminal.SetConnection(c.button, c.left, "left");
-                    }
-                    if(c.right)
-                    {
-                        player.terminal.SetConnection(c.button, c.right, "right");
-                    }
-                }
                 player.terminal.SetActualPlatform(player.SelectedPlatform.GetComponent<ProcesserInput>());
                 Button[] buttonsInTerminal = player.SelectedPlatform.GetComponent<ProcesserInput>().buttonsInTerminal;
-                
+                /*
                 for(int i = 0; i < player.terminal.buttonsInTerminal.Length;i++)
                 {
                     player.terminal.DeleteButtonInTerminal(i);
                     player.terminal.postionsInTerminal[i].SetActive(false);
                 }
+                */
                 for (int i = 0; i < buttonsInTerminal.Length; i++)
                 {
                     //player.terminal.postionsInTerminal[i].GetComponent<Image>().sprite = null;
@@ -110,7 +141,7 @@ public class CursorSelectedObjectState : CursorState
                         //c.a = 1;
                         //player.terminal.postionsInTerminal[i].GetComponent<Image>().color = c;
                         player.terminal.postionsInTerminal[i].SetActive(true);
-                        Debug.Log(buttonsInTerminal[i]);
+                        //Debug.Log(buttonsInTerminal[i]);
                     
                         //player.terminal.postionsInTerminal[i].GetComponent<Image>().sprite = buttonsInTerminal[i].buttonImage;
                     }
@@ -130,7 +161,9 @@ public class CursorSelectedObjectState : CursorState
         if (player.InputHandler.CancelInput)
         {
             player.InputHandler.UseCancelInput();
-            Debug.Log("To Player Mode");
+            player.InputHandler.UsePausedInput();
+            //Debug.Log("To Player Mode");
+            player.Deactivate();
             GameObject.FindObjectOfType<GameManager>().ChangeState(GameManager.GameState.PlayerMode);
             GameObject.FindObjectOfType<GameManager>().ActivatePlatforms();
         }

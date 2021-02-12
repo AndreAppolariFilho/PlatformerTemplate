@@ -13,5 +13,9 @@ MonoBehaviour:
   m_Name: down
   m_EditorClassIdentifier: 
   buttonImage: {fileID: -6453525334366324539, guid: 7e78db5f5a80c254b95139947dd3adb2, type: 3}
+  lcdDisplayImage: {fileID: -9180315456264215661, guid: 452a3ae5c30229942976e26ef1b0c6e8, type: 3}
   buttonValue: D
-  description: This node will cause the platform to move to downwards.
+  description: This function performs an action on the platform, causing it to move
+    downwards.
+  funtionName: Down();
+  isRemovalNode: 0

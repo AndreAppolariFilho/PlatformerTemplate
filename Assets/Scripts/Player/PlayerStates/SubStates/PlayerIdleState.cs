@@ -27,9 +27,25 @@ public class PlayerIdleState : PlayerGroundedState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+        if(player.CheckIfGrounded())
+        {
+            if(player.angle > 0)
+            {
+                player.RB.constraints = RigidbodyConstraints2D.FreezeAll;
+                player.RB.velocity = Vector2.zero; 
+            }
+        }
+        
         //Debug.Log(player.CheckIfTouchingLadder() + " " + Time.time);
         if(xInput != 0 && !isExitingState)
         {
+            //if(player.isOnSlope)
+            //{
+            //    stateMachine.ChangeState(player.SlopeWalkState);
+            //}
+            //else{
+            //    stateMachine.ChangeState(player.MoveState);
+            //}
             stateMachine.ChangeState(player.MoveState);
         }
         if(yInput > 0 && player.CheckIfTouchingLadder())

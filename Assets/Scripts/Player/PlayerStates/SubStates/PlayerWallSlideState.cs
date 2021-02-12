@@ -11,7 +11,6 @@ public class PlayerWallSlideState : PlayerTouchingWallState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-
         if (!isExitingState)
         {
             player.Anim.Play(this.animBoolName);

@@ -34,7 +34,11 @@ public class PlayerAbilityState : PlayerState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-
+        if(player.dying)
+        {
+            stateMachine.ChangeState(player.DyingState);
+            return;
+        }
         if (isAbilityDone)
         {
             if (isGrounded && player.CurrentVelocity.y < 0.01f)

@@ -14,6 +14,7 @@ public class CursorTerminalStopped : CursorTerminalState
         //if (GameObject.FindObjectOfType<GameManager>().currentState == GameManager.GameState.TerminalMode)
         //    GameObject.FindObjectOfType<GameManager>().ChangeState(GameManager.GameState.CursorMode);
         player.terminal.ActivateObjectButtonsHud();
+        player.terminal.terminalController.DeactivateScrollBar();
 
     }
     public override void Exit()
@@ -23,10 +24,11 @@ public class CursorTerminalStopped : CursorTerminalState
     public override void LogicUpdate()
     {
         int inputX = player.InputHandler.NormInputX;
+        int inputY = player.InputHandler.NormInputY;
         bool cancel = player.InputHandler.CancelInput;
         bool confirm = player.InputHandler.JumpInput;
         bool showInfo = player.InputHandler.InteractInput;
-        if (inputX > 0)
+        if (inputX != 0 || inputY != 0)
         {
             stateMachine.ChangeState(player.CursorSelectingState);
         }

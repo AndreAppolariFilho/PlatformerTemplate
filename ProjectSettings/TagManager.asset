@@ -11,6 +11,8 @@ TagManager:
   - LadderPlatform
   - MovingPlatform
   - DeleteButton
+  - CursorPosition
+  - CursorTerminal
   layers:
   - Default
   - TransparentFX
@@ -23,9 +25,9 @@ TagManager:
   - wall
   - layer
   - ladder
-  - 
-  - 
-  - 
+  - PostProcessing
+  - UIGameSpace
+  - Background
   - 
   - 
   - 
@@ -45,6 +47,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Space
+    uniqueID: 193384725
+    locked: 0
+  - name: Background
+    uniqueID: 367481979
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: UI
+    uniqueID: 2128667731
     locked: 0

@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e9ba5985a07db54ab1193ca0ccbd904, type: 3}
   m_Name: right
   m_EditorClassIdentifier: 
-  buttonImage: {fileID: 5851878915321720725, guid: 7e78db5f5a80c254b95139947dd3adb2, type: 3}
+  buttonImage: {fileID: 4160017342304021534, guid: 7e78db5f5a80c254b95139947dd3adb2, type: 3}
+  lcdDisplayImage: {fileID: 2779970694799124304, guid: bcb14c370fd152c42a8cd1eab4041c45, type: 3}
   buttonValue: R
-  description: This node will cause the platform to move to the right
+  description: This function performs an action on the platform, making it move to
+    the right.
+  funtionName: Right();
+  isRemovalNode: 0

@@ -13,5 +13,9 @@ MonoBehaviour:
   m_Name: up
   m_EditorClassIdentifier: 
   buttonImage: {fileID: 4160017342304021534, guid: 7e78db5f5a80c254b95139947dd3adb2, type: 3}
+  lcdDisplayImage: {fileID: 8953274811469894866, guid: b3c84270476cbb74fa57ce68782ddd1c, type: 3}
   buttonValue: U
-  description: This node  will cause the platform to move upwards.
+  description: This function performs an action on the platform, making it move to
+    the upwards.
+  funtionName: Up();
+  isRemovalNode: 0

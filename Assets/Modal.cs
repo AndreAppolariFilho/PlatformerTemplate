@@ -7,7 +7,7 @@ using TMPro;
 public class Modal : MonoBehaviour
 {
     // Start is called before the first frame update
-    public Image image;
+    public TMP_Text functionName;
     public TMP_Text text;
 
     void Start()

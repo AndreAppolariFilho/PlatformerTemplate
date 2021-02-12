@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e9ba5985a07db54ab1193ca0ccbd904, type: 3}
   m_Name: left
   m_EditorClassIdentifier: 
-  buttonImage: {fileID: -351641957730465402, guid: 7e78db5f5a80c254b95139947dd3adb2, type: 3}
+  buttonImage: {fileID: 4160017342304021534, guid: 7e78db5f5a80c254b95139947dd3adb2, type: 3}
+  lcdDisplayImage: {fileID: -4753935689406218950, guid: bf82edac8288c06478c2e32fffaba732, type: 3}
   buttonValue: L
-  description: This node will cause the platform to move to the left.
+  description: This function performs an action on the platform, making it move to
+    the left.
+  funtionName: Left();
+  isRemovalNode: 0

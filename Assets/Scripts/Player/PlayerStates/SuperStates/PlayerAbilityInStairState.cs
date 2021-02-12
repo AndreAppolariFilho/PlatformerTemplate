@@ -39,6 +39,11 @@ public class PlayerAbilityInStairState : PlayerState
         base.LogicUpdate();
         xInput = player.InputHandler.NormInputX;
         yInput = player.InputHandler.NormInputY;
+        if(player.dying)
+        {
+            stateMachine.ChangeState(player.DyingState);
+            return;
+        }
         if (isAbilityDone)
         {
             if (isGrounded && player.CurrentVelocity.y < 0.01f)

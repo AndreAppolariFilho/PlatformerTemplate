@@ -38,7 +38,7 @@ public class PlayerLedgeClimbState : PlayerState
     public override void Enter()
     {
         base.Enter();
-
+        player.RB.gravityScale = 0;
         player.SetVelocityZero();
         player.transform.position = detectedPos;
         cornerPos = player.DetermineCornerPosition();
@@ -53,7 +53,7 @@ public class PlayerLedgeClimbState : PlayerState
     public override void Exit()
     {
         base.Exit();
-
+        player.RB.gravityScale = 3;
         isHanging = false;
 
         if (isClimbing)
@@ -61,11 +61,19 @@ public class PlayerLedgeClimbState : PlayerState
             player.transform.position = stopPos;
             isClimbing = false;
         }
+        isAnimationFinished = false;
     }
 
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+        if(player.dying)
+        {
+            stateMachine.ChangeState(player.DyingState);
+            return;
+        }
+        if(isClimbing)
+        return;
         
         if (isAnimationFinished)
         {
@@ -80,9 +88,11 @@ public class PlayerLedgeClimbState : PlayerState
             player.SetVelocityZero();
             player.transform.position = startPos;
             
+            
             if (xInput == player.FacingDirection && isHanging && !isClimbing)
             {
                 isClimbing = true;
+                //Debug.Break();
                 //Debug.Log("ledge_wall");
                 player.Anim.Play("ledge_wall");
                 
@@ -96,8 +106,9 @@ public class PlayerLedgeClimbState : PlayerState
                 player.WallJumpState.DetermineWallJumpDirection(true);
                 stateMachine.ChangeState(player.WallJumpState);
             }
-            else if(xInput == 0 && !isClimbing)
+            else if((xInput == 0 || xInput != player.FacingDirection) && !isClimbing)
             {
+                //Debug.Break();
                 player.Anim.Play("ledge_grab");
             }
         }

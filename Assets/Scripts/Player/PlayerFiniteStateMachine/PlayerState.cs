@@ -32,6 +32,7 @@ public class PlayerState
         //Debug.Log(this.GetType().Name+" "+animBoolName);
         isAnimationFinished = false;
         isExitingState = false;
+        Debug.Log("ENTERING   "+this.GetType());
     }
 
     public virtual void Exit()
@@ -42,12 +43,17 @@ public class PlayerState
 
     public virtual void LogicUpdate()
     {
+        if(player.InputHandler.PausedInput)
+        {
+            GameObject.FindObjectOfType<GameManager>().PauseGame();
+        }
 
     }
 
     public virtual void PhysicsUpdate()
     {
         DoChecks();
+        player.SlopeCheck(player.InputHandler.NormInputX);
     }
 
     public virtual void DoChecks() { }

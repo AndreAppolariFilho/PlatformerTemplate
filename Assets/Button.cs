@@ -5,6 +5,9 @@ using UnityEngine;
 public class Button : ScriptableObject
 {
     public Sprite buttonImage;
+    public Sprite lcdDisplayImage;
     public string buttonValue;
     public string description;
+    public string funtionName;
+    public bool isRemovalNode;
 }

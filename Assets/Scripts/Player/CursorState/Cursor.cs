@@ -23,10 +23,14 @@ public class Cursor : MonoBehaviour
     public GameObject upRight;
     public GameObject bottomRight;
     public GameObject bottomLeft;
+    public GameObject upSelectedLeft;
+    public GameObject upSelectedRight;
+    public GameObject bottomSelectedRight;
+    public GameObject bottomSelectedLeft;
     public GameObject middlePoint;
     public GameObject SelectedPlatform;
-    public float width = 1;
-    public float height = 1;
+    public float width = 0.25f;
+    public float height = 0.25f;
     public bool inBounds = false;
     public Vector3 bounds;
     public Vector3 position;
@@ -71,12 +75,45 @@ public class Cursor : MonoBehaviour
         SpriteR = GetComponent<SpriteRenderer>();
         
     }
+    public void ActivateCursor()
+    {
+        upLeft.SetActive(true);
+        upRight.SetActive(true);
+        bottomRight.SetActive(true);
+        bottomLeft.SetActive(true);
+    }
+    public void DeactivateCursor()
+    {
+        upLeft.SetActive(false);
+        upRight.SetActive(false);
+        bottomRight.SetActive(false);
+        bottomLeft.SetActive(false);
+    }
+    public void ActivateCursorSelected()
+    {
+        upSelectedLeft.SetActive(true);
+        upSelectedRight.SetActive(true);
+        bottomSelectedRight.SetActive(true);
+        bottomSelectedLeft.SetActive(true);
+    }
+    public void DeactivateCursorSelected()
+    {
+        upSelectedLeft.SetActive(false);
+        upSelectedRight.SetActive(false);
+        bottomSelectedRight.SetActive(false);
+        bottomSelectedLeft.SetActive(false);
+    }
     public void SetSize(float w, float h)
     {
-        upLeft.transform.position = new Vector2(middlePoint.transform.position.x - (w / 2.0f), middlePoint.transform.position.y + (h / 2.0f));
-        upRight.transform.position = new Vector2(middlePoint.transform.position.x + (w / 2.0f), middlePoint.transform.position.y + (h / 2.0f));
-        bottomRight.transform.position = new Vector2(middlePoint.transform.position.x + (w / 2.0f), middlePoint.transform.position.y - (h / 2.0f));
-        bottomLeft.transform.position = new Vector2(middlePoint.transform.position.x - (w / 2.0f), middlePoint.transform.position.y - (h / 2.0f));
+        upLeft.transform.position = new Vector2(middlePoint.transform.position.x - (w / 2.0f) - (width / 2.0f), middlePoint.transform.position.y + (h / 2.0f) + (height / 2.0f));
+        upRight.transform.position = new Vector2(middlePoint.transform.position.x + (w / 2.0f) + (width / 2.0f), middlePoint.transform.position.y + (h / 2.0f) + (height / 2.0f));
+        bottomRight.transform.position = new Vector2(middlePoint.transform.position.x + (w / 2.0f) + (width / 2.0f), middlePoint.transform.position.y - (h / 2.0f) - (height / 2.0f));
+        bottomLeft.transform.position = new Vector2(middlePoint.transform.position.x - (w / 2.0f) - (width / 2.0f), middlePoint.transform.position.y - (h / 2.0f) - (height / 2.0f));
+
+        upSelectedLeft.transform.position = new Vector2(middlePoint.transform.position.x - (w / 2.0f) - (width / 2.0f), middlePoint.transform.position.y + (h / 2.0f) + (height / 2.0f));
+        upSelectedRight.transform.position = new Vector2(middlePoint.transform.position.x + (w / 2.0f) + (width / 2.0f), middlePoint.transform.position.y + (h / 2.0f) + (height / 2.0f));
+        bottomSelectedRight.transform.position = new Vector2(middlePoint.transform.position.x + (w / 2.0f) + (width / 2.0f), middlePoint.transform.position.y - (h / 2.0f) - (height / 2.0f));
+        bottomSelectedLeft.transform.position = new Vector2(middlePoint.transform.position.x - (w / 2.0f) - (width / 2.0f), middlePoint.transform.position.y - (h / 2.0f) - (height / 2.0f));
     }
     public bool IsColliding()
     {
@@ -106,78 +143,55 @@ public class Cursor : MonoBehaviour
         //Debug.Log(InputHandler.CancelInput);
         if (GameObject.FindObjectOfType<GameManager>().currentState == GameManager.GameState.CursorMode)
         {
-            if(!upRight.activeInHierarchy)
-            {
-                upRight.SetActive(true);
-            }
-            if (!upLeft.activeInHierarchy)
-            {
-                upLeft.SetActive(true);
-            }
-            if (!bottomLeft.activeInHierarchy)
-            {
-                bottomLeft.SetActive(true);
-            }
-            if (!bottomRight.activeInHierarchy)
-            {
-                bottomRight.SetActive(true);
-            }
+           
             StateMachine.CurrentState.LogicUpdate();
-            if (!buttonsObjects[0].activeInHierarchy)
+
+            if(GameObject.FindObjectOfType<GameManager>().currentState == GameManager.GameState.CursorMode)
             {
-                buttonsObjects[0].GetComponentInChildren<Image>().sprite = inputsButtons[0].image;
-                buttonsObjects[0].GetComponentInChildren<TMP_Text>().text = inputsButtons[0].name;
-                buttonsObjects[0].SetActive(true);
-            }
-            if (gameManager.HasPlatformWithCommand())
-            {
-                if (StateMachine.CurrentState == CursorSelectedMovement)
+                if (!buttonsObjects[0].activeInHierarchy)
                 {
-                    if (!buttonsObjects[2].activeInHierarchy)
-                    {
-                        buttonsObjects[2].GetComponentInChildren<Image>().sprite = inputsButtons[2].image;
-                        buttonsObjects[2].GetComponentInChildren<TMP_Text>().text = inputsButtons[2].name;
-                        buttonsObjects[2].SetActive(true);
-                    }
+                    buttonsObjects[0].GetComponentInChildren<Image>().sprite = inputsButtons[0].image;
+                    buttonsObjects[0].GetComponentInChildren<TMP_Text>().text = inputsButtons[0].name;
+                    buttonsObjects[0].SetActive(true);
                 }
-                
-                else
+                if (gameManager.HasPlatformWithCommand())
                 {
-                    if (!buttonsObjects[1].activeInHierarchy)
+                    if (StateMachine.CurrentState == CursorSelectedMovement)
                     {
-                        buttonsObjects[1].GetComponentInChildren<Image>().sprite = inputsButtons[2].image;
-                        buttonsObjects[1].GetComponentInChildren<TMP_Text>().text = inputsButtons[2].name;
-                        buttonsObjects[1].SetActive(true);
+                        if (!buttonsObjects[2].activeInHierarchy)
+                        {
+                            buttonsObjects[2].GetComponentInChildren<Image>().sprite = inputsButtons[2].image;
+                            buttonsObjects[2].GetComponentInChildren<TMP_Text>().text = inputsButtons[2].name;
+                            buttonsObjects[2].SetActive(true);
+                        }
                     }
-                    if (buttonsObjects[2].activeInHierarchy)
+                    
+                    else
                     {
-                        buttonsObjects[2].SetActive(false);
+                        if (!buttonsObjects[1].activeInHierarchy)
+                        {
+                            buttonsObjects[1].GetComponentInChildren<Image>().sprite = inputsButtons[2].image;
+                            buttonsObjects[1].GetComponentInChildren<TMP_Text>().text = inputsButtons[2].name;
+                            buttonsObjects[1].SetActive(true);
+                        }
+                        if (buttonsObjects[2].activeInHierarchy)
+                        {
+                            buttonsObjects[2].SetActive(false);
+                        }
                     }
-                }
-                if (StateMachine.CurrentState == CursorPlayPreview)
-                {
-                    if (buttonsObjects[1].activeInHierarchy)
-                    {   
-                        buttonsObjects[1].SetActive(false);
-                    }
-                    if (upRight.activeInHierarchy)
+                    if (StateMachine.CurrentState == CursorPlayPreview)
                     {
-                        upRight.SetActive(false);
-                    }
-                    if (upLeft.activeInHierarchy)
-                    {
-                        upLeft.SetActive(false);
-                    }
-                    if (bottomLeft.activeInHierarchy)
-                    {
-                        bottomLeft.SetActive(false);
-                    }
-                    if (bottomRight.activeInHierarchy)
-                    {
-                        bottomRight.SetActive(false);
+                        if (buttonsObjects[1].activeInHierarchy)
+                        {   
+                            buttonsObjects[1].SetActive(false);
+                        }
+                       
+                        
+                        DeactivateCursorSelected();
                     }
                 }
             }
+
 
         }
         else

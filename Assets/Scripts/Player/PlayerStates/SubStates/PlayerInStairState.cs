@@ -47,7 +47,11 @@ public class PlayerInStairState : PlayerState
         xInput = player.InputHandler.NormInputX;
         yInput = player.InputHandler.NormInputY;
         jumpInput = player.InputHandler.JumpInput;
-        
+        if(player.dying)
+        {
+            stateMachine.ChangeState(player.DyingState);
+            return;
+        }
         if(yInput > 0f)
         {
             player.SetVelocityY(playerData.ladderGrimbVelocity);

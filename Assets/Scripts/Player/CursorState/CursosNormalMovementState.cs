@@ -14,6 +14,8 @@ public class CursosNormalMovementState : CursorState
         player.SetSize(0, 0);
         player.gameManager.ResetPlatformsPositions();
         player.gameManager.DeactivatePlatforms();
+        player.ActivateCursor();
+        player.DeactivateCursorSelected();
     }
     public override void Exit()
     {
@@ -37,7 +39,9 @@ public class CursosNormalMovementState : CursorState
         if (player.InputHandler.CancelInput)
         {
             player.InputHandler.UseCancelInput();
-            Debug.Log("To Player Mode");
+            player.InputHandler.UsePausedInput();
+            //Debug.Log("To Player Mode");
+            player.Deactivate();
             GameObject.FindObjectOfType<GameManager>().ChangeState(GameManager.GameState.PlayerMode);
             GameObject.FindObjectOfType<GameManager>().ActivatePlatforms();
         }

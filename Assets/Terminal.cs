@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 public class Terminal : MonoBehaviour
 {
     // Start is called before the first frame update
     public Button[] buttonsInTerminal;
     public Button[] buttonsToChoice;
     public Button deleteButton;
-    public GameObject[] positionsToChoice;
-    public GameObject[] postionsInTerminal;
+    public GameObject[] internalPositionsToChoice;
+    public Dictionary<Button, GameObject>  positionsToChoice = new Dictionary<Button, GameObject>();
+    public InputTerminalController terminalController;
+    public List<GameObject> postionsInTerminal = new List<GameObject>();
     public ProcesserInput processerInput;
     public GameObject selectingObjectButtonsHud;
     public GameObject selectingInTerminalHud;
@@ -23,14 +26,23 @@ public class Terminal : MonoBehaviour
         public Button left;
         public Button right;
     }
-    public Dictionary<Button, Connection> connections;
-    public void AllocTerminalSize(int size)
+    [SerializeField] public Dictionary<Button, Connection> connections = new Dictionary<Button, Connection>();
+    public void AllocTerminalSize()
     {
+        int size = internalPositionsToChoice.Length;
         buttonsInTerminal = new Button[size];
         processerInput.buttonsInTerminal = new Button[size];
     }
+    public List<GameObject> GetPositionsInTerminal()
+    {
+        return terminalController.postionsInTerminal;
+    }
     public void SetConnection(Button button1, Button button2, string type)
     {
+        if(!connections.ContainsKey(button1))
+        {
+            connections[button1] = new Connection();
+        }
         Connection c = connections[button1];
         if (type == "up")
         {   
@@ -53,8 +65,7 @@ public class Terminal : MonoBehaviour
     }
     private void Start()
     {
-        if(buttonsInTerminal.Length <= 0)
-            AllocTerminalSize(postionsInTerminal.Length);
+        
 
     }
     public void SetQuantityOfButtonToChoice(int size)
@@ -94,9 +105,26 @@ public class Terminal : MonoBehaviour
         if (deletingInTerminalHud)
             deletingInTerminalHud.SetActive(false);
     }
+    public void ClearInputTerminal()
+    {
+        int size = terminalController.buttonsInTerminal.Count;
+        if(size > 0)
+        {
+            terminalController.SetText(0, "");
+            terminalController.buttonsInTerminal[0] = null;
+            
+            for(int i = size - 1; i >= 1 ; i--)
+            {   
+                terminalController.SetText(i, "");
+                terminalController.buttonsInTerminal.RemoveAt(i);
+                terminalController.postionsInTerminal.RemoveAt(i);
+            }
+        }
+    }
     public void SetActualPlatform(ProcesserInput actualPlatform)
     {
         processerInput = actualPlatform;
+        AllocTerminalSize();
     }
     public void DiselectPlatform()
     {
@@ -105,14 +133,15 @@ public class Terminal : MonoBehaviour
     public void UpdatePlatform()
     {
         string word = "";
-        
-        foreach(Button button in buttonsInTerminal)
+        //Debug.LogError(this.gameObject.name);
+        foreach(Button button in terminalController.buttonsInTerminal)
         {
             if (button)
                 word += button.buttonValue;
             else
                 word += " ";
         }
+        
         word = word.TrimEnd(' ');
         word = word.Replace(' ', 'O');
         processerInput.SetWord(word);
@@ -120,14 +149,26 @@ public class Terminal : MonoBehaviour
     public void SetButtonToChoice(int position, Button button)
     {
         buttonsToChoice[position] = button;
-        positionsToChoice[position].GetComponent<Image>().sprite = button.buttonImage;
-        Color c = positionsToChoice[position].GetComponent<Image>().color;
-        c.a = 1;
-        positionsToChoice[position].GetComponent<Image>().color = c;
+        //Debug.Log(position);
+        //Debug.Log(internalPositionsToChoice.Length);
+        if(!positionsToChoice.ContainsKey(button))
+        {
+            positionsToChoice[button] = internalPositionsToChoice[position];
+        }
+
+        TMP_Text[] texts = positionsToChoice[button].GetComponentsInChildren<TMP_Text>();
+        foreach(TMP_Text text in texts)
+        {
+            if(!text.CompareTag("CursorTerminal"))
+            {
+              text.text = button.funtionName;
+            }
+        }
+        positionsToChoice[button].SetActive(true);
     }
     public void AddToTerminal(Button button, int position)
     {
-        if (position < buttonsInTerminal.Length)
+        if (position < terminalController.buttonsInTerminal.Count)
         { 
             buttonsInTerminal[position] = button;
             processerInput.buttonsInTerminal[position] = button;
@@ -154,6 +195,7 @@ public class Terminal : MonoBehaviour
             return buttonsInTerminal[position];
         return buttonsInTerminal[buttonsInTerminal.Length - 1];
     }
+    
     public void Validate()
     {
 

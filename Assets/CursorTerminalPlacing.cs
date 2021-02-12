@@ -11,9 +11,11 @@ public class CursorTerminalPlacing : CursorTerminalState
     // Start is called before the first frame update
     public override void Enter()
     {
+        //Debug.Log(player.GetLastTerminalPosition());
+        player.cursorInTerminalPosition = player.GetLastTerminalPosition();
         player.SetPositionInTerminalPosition(0);
-        player.cursorInTerminalPosition = 0;
         player.terminal.ActivateSelectingInTerminalHud();
+        player.terminal.terminalController.ActivateScrollBar();
     }
     public override void Exit()
     {
@@ -23,20 +25,26 @@ public class CursorTerminalPlacing : CursorTerminalState
     }
     public override void LogicUpdate()
     {
-        int inputX = player.InputHandler.NormInputX;
+        int inputX = player.InputHandler.NormInputY;
         bool cancel = player.InputHandler.CancelInput;
         bool confirm = player.InputHandler.JumpInput;
         player.SetPositionInTerminalPosition(inputX);
         if(confirm)
         {
             player.InputHandler.UseJumpInput();
+            
             player.SetButtonInTerminal(player.cursorInTerminalPosition, player.selectedButton);
             stateMachine.ChangeState(player.CursorSelectingState);
+            
         }
         if(cancel)
         {
             player.InputHandler.UseCancelInput();
+            
+            player.terminal.terminalController.SetText(player.cursorInTerminalPosition, player.terminal.terminalController.buttonsInTerminal[player.cursorInTerminalPosition].funtionName);
+            
             stateMachine.ChangeState(player.CursorSelectingState);
+            
         }
 
     }

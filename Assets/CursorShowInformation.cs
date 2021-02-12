@@ -10,7 +10,7 @@ public class CursorShowInformation : CursorTerminalState
 
     public override void Enter()
     {
-        player.terminal.tutorialPanel.image.sprite = player.selectedButton.buttonImage;
+        player.terminal.tutorialPanel.functionName.text = player.selectedButton.funtionName;
         player.terminal.tutorialPanel.text.text = player.selectedButton.description;
         player.terminal.tutorialPanel.gameObject.SetActive(true);
     }
